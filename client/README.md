@@ -1,0 +1,1 @@
+> Hulo is a batch-processing oriented programming language that compiles to native system-level scripts like Bash, PowerShell, and VBS.

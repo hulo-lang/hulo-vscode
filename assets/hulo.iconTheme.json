@@ -1,0 +1,14 @@
+{
+	"iconDefinitions": {
+		"hulo-icon": {
+			"iconPath": "./logo.png"
+		}
+	},
+	"fileExtensions": {
+		"hl": "hulo-icon"
+	},
+	"fileNames": {},
+	"languageIds": {
+		"hulo": "hulo-icon"
+	}
+}
