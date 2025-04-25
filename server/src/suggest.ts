@@ -24,10 +24,6 @@ export const completionItems: CompletionItem[] = [
 		documentation: ""
 	},
 	{
-		label: 'package',
-		kind: CompletionItemKind.Keyword,
-	},
-	{
 		label: 'import',
 		kind: CompletionItemKind.Keyword,
 	},
@@ -142,10 +138,6 @@ export const completionItems: CompletionItem[] = [
 		kind: CompletionItemKind.Keyword,
 	},
 	{
-		label: 'range',
-		kind: CompletionItemKind.Keyword,
-	},
-	{
 		label: 'continue',
 		kind: CompletionItemKind.Keyword,
 	},
@@ -187,10 +179,6 @@ export const completionItems: CompletionItem[] = [
 	},
 	{
 		label: 'required',
-		kind: CompletionItemKind.Keyword,
-	},
-	{
-		label: 'factory',
 		kind: CompletionItemKind.Keyword,
 	},
 	{
@@ -322,7 +310,11 @@ export const completionItems: CompletionItem[] = [
 		insertText: "impl trait_name for class_name {\n\n}"
 	},
 	{
-		label: 'extend',
+		label: 'extends',
+		kind: CompletionItemKind.Keyword,
+	},
+	{
+		label: 'extension',
 		kind: CompletionItemKind.Keyword,
 	},
 	{
@@ -331,7 +323,7 @@ export const completionItems: CompletionItem[] = [
 		detail: "extend declaration",
 		documentation: {
 			kind: MarkupKind.Markdown,
-			value: ['```hulo', "extend mod name {\n\n}", '```'].join('\n')
+			value: ['```hulo', "extension mod name {\n\n}", '```'].join('\n')
 		},
 		insertText: "extend mod name {\n\n}"
 	},
@@ -341,7 +333,7 @@ export const completionItems: CompletionItem[] = [
 		detail: "extend declaration",
 		documentation: {
 			kind: MarkupKind.Markdown,
-			value: ['```hulo', "extend enum name {\n\n}", '```'].join('\n')
+			value: ['```hulo', "extension enum name {\n\n}", '```'].join('\n')
 		},
 		insertText: "extend enum name {\n\n}"
 	},
@@ -351,7 +343,7 @@ export const completionItems: CompletionItem[] = [
 		detail: "extend declaration",
 		documentation: {
 			kind: MarkupKind.Markdown,
-			value: ['```hulo', "extend class name {\n\n}", '```'].join('\n')
+			value: ['```hulo', "extension class name {\n\n}", '```'].join('\n')
 		},
 		insertText: "extend class name {\n\n}"
 	},
@@ -361,7 +353,7 @@ export const completionItems: CompletionItem[] = [
 		detail: "extend declaration",
 		documentation: {
 			kind: MarkupKind.Markdown,
-			value: ['```hulo', "extend type name {\n\n}", '```'].join('\n')
+			value: ['```hulo', "extension type name {\n\n}", '```'].join('\n')
 		},
 		insertText: "extend type name {\n\n}"
 	},
@@ -371,7 +363,7 @@ export const completionItems: CompletionItem[] = [
 		detail: "extend declaration",
 		documentation: {
 			kind: MarkupKind.Markdown,
-			value: ['```hulo', "extend trait name {\n\n}", '```'].join('\n')
+			value: ['```hulo', "extension trait name {\n\n}", '```'].join('\n')
 		},
 		insertText: "extend trait name {\n\n}"
 	},
@@ -389,6 +381,10 @@ export const completionItems: CompletionItem[] = [
 	},
 	{
 		label: 'new',
+		kind: CompletionItemKind.Keyword,
+	},
+	{
+		label: 'delete',
 		kind: CompletionItemKind.Keyword,
 	},
 ]
