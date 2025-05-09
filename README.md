@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Hulo-Docs 👋</h1>
+<h1 align="center">Welcome to Hulo 👋</h1>
 
 <center>
 

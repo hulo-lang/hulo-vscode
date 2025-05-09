@@ -223,7 +223,7 @@
 				},
 				{
 					"name": "storage.modifier",
-					"match": "\\b(static|final|pub|required|readonly|get)\\b"
+					"match": "\\b(static|final|pub|required|readonly|get|set)\\b"
 				}
 			]
 		},
