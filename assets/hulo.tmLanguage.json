@@ -33,6 +33,9 @@
 			"include": "#constant"
 		},
 		{
+			"include": "#strings_operators"
+		},
+		{
 			"include": "#strings"
 		},
 		{
@@ -111,6 +114,14 @@
 							"name": "variable.other"
 						}
 					}
+				},
+				{
+					"match": "\\b(?!\\d)(\\w+)(?=\\.(?!\\!)\\w+\\s*\\()",
+					"captures": {
+						"1": {
+							"name": "entity.name.namespace"
+						}
+					}
 				}
 			]
 		},
@@ -126,14 +137,22 @@
 				},
 				{
 					"name": "variable.other",
-					"match": "\\$\\w+"
+					"match": "[$#]\\w+"
 				},
 				{
-					"match": "\\w+\\s*(?=:)",
+					"match": "(\\w+)\\s*(?=:)",
 					"name": "variable.parameter"
 				},
 				{
 					"match": "(?<=\\.\\.)(\\w+)(?!\\s*\\()\\b",
+					"captures": {
+						"1": {
+							"name": "variable.parameter"
+						}
+					}
+				},
+				{
+					"match": "(\\w+)\\?\\s*(?=:)",
 					"captures": {
 						"1": {
 							"name": "variable.parameter"
@@ -154,7 +173,7 @@
 				},
 				{
 					"name": "keyword.operator",
-					"match": "(@|\\.\\.\\.|\\?|:|\\!|&|\\$|\\||>|<|=|\\+|\\-|\\*|\\/|%|\\+=|\\-=|\\*=|\\/=|%=)"
+					"match": "(@|\\.\\.\\.|\\?|:|\\!|&|\\$|\\||>|<|=|\\+|\\-|\\*|\\/|%|\\+=|\\-=|\\*=|\\/=|%=|#)"
 				}
 			]
 		},
@@ -208,6 +227,10 @@
 				{
 					"name": "entity.name.function.hulo",
 					"match": "\\b\\w+(?=\\s*\\?\\.\\s*(<[^<>]*>)?\\s*\\()|\\b\\w+(?=\\s*(<[^<>]*>)?\\s*\\()"
+				},
+				{
+					"name": "entity.name.function.macro",
+					"match": "\\b\\w+(?=\\s*\\!\\s*\\()"
 				}
 			]
 		},
@@ -215,7 +238,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.hulo",
-					"match": "\\b(mod|part|use|class|enum|trait|cmd|fn|let|var|const|import|is|as|from|type|typeof|operator|impl|for|extends|extension|try|catch|finally|defer|throw|throws|if|else|match|do|loop|in|range|return|break|continue|comptime|unsafe|extern|declare|async|await)\\b"
+					"match": "\\b(mod|part|use|class|enum|trait|cmd|fn|let|var|const|import|is|as|from|type|typeof|operator|impl|for|extends|extension|try|catch|finally|defer|throw|throws|if|else|match|do|loop|in|range|return|break|continue|comptime|unsafe|extern|declare|async|await|when|keyof|on)\\b"
 				},
 				{
 					"name": "keyword.operator.new",
@@ -224,6 +247,99 @@
 				{
 					"name": "storage.modifier",
 					"match": "\\b(static|final|pub|required|readonly|get|set)\\b"
+				}
+			]
+		},
+		"strings_operators": {
+			"patterns": [
+				{
+					"begin": "(?<!\\w)([a-zA-Z])\"",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.operator"
+						}
+					},
+					"end": "\"",
+					"name": "string.quoted.double.hulo",
+					"patterns": [
+						{
+							"name": "constant.character.escape.hulo",
+							"match": "\\\\."
+						},
+						{
+							"begin": "(\\${)",
+							"end": "(})",
+							"beginCaptures": {
+								"1": {
+									"name": "punctuation.definition.template-expression.begin.hl"
+								}
+							},
+							"endCaptures": {
+								"1": {
+									"name": "punctuation.definition.template-expression.end.hl"
+								}
+							},
+							"contentName": "meta.embedded.expression.hl",
+							"patterns": [
+								{
+									"include": "#variable"
+								},
+								{
+									"include": "#declaration"
+								},
+								{
+									"include": "#keywords"
+								},
+								{
+									"include": "#operators"
+								},
+								{
+									"include": "#constant"
+								},
+								{
+									"include": "#type"
+								},
+								{
+									"begin": "\\(",
+									"end": "\\)",
+									"beginCaptures": {
+										"0": {
+											"name": "punctuation.definition.parameters.begin.hl"
+										}
+									},
+									"endCaptures": {
+										"0": {
+											"name": "punctuation.definition.parameters.end.hl"
+										}
+									},
+									"patterns": [
+										{
+											"include": "#variable"
+										},
+										{
+											"include": "#declaration"
+										},
+										{
+											"include": "#keywords"
+										},
+										{
+											"include": "#operators"
+										},
+										{
+											"include": "#constant"
+										},
+										{
+											"include": "#type"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "variable.language",
+							"match": "\\$\\w+"
+						}
+					]
 				}
 			]
 		},
@@ -255,7 +371,7 @@
 							"match": "\\\\."
 						},
 						{
-							"begin": "(\\${)",
+							"begin": "([$#]\\{)",
 							"end": "(})",
 							"beginCaptures": {
 								"1": {
@@ -267,6 +383,7 @@
 									"name": "punctuation.definition.template-expression.end.hl"
 								}
 							},
+							"contentName": "meta.embedded.expression.hl",
 							"patterns": [
 								{
 									"include": "#variable"
@@ -285,6 +402,40 @@
 								},
 								{
 									"include": "#type"
+								},
+								{
+									"begin": "\\(",
+									"end": "\\)",
+									"beginCaptures": {
+										"0": {
+											"name": "punctuation.definition.parameters.begin.hl"
+										}
+									},
+									"endCaptures": {
+										"0": {
+											"name": "punctuation.definition.parameters.end.hl"
+										}
+									},
+									"patterns": [
+										{
+											"include": "#variable"
+										},
+										{
+											"include": "#declaration"
+										},
+										{
+											"include": "#keywords"
+										},
+										{
+											"include": "#operators"
+										},
+										{
+											"include": "#constant"
+										},
+										{
+											"include": "#type"
+										}
+									]
 								}
 							]
 						},
